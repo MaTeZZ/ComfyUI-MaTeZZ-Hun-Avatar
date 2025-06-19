@@ -1,0 +1,56 @@
+# PyTorch and CUDA (Blackwell requires PyTorch >= 2.3, targetting 2.7 and CUDA 12.8)
+# Users will need to install the correct PyTorch version for their CUDA setup.
+# Example: pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+# For now, we list Pytorch without version for flexibility, but recommend specific versions in documentation.
+# torch
+# torchvision
+# torchaudio
+
+# Diffusers and Transformers (versions from original/SM or latest compatible)
+diffusers>=0.20.0 # Check original repo for more specific versions if issues arise
+transformers>=4.30.0 # Check original repo
+omegaconf>=2.3.0
+einops>=0.7.0
+# flash-attention -- Installation is more complex, recommend manual install via pip install flash-attn --no-build-isolation
+# User should install flash-attn separately if needed: pip install flash-attn --no-build-isolation
+
+# Other dependencies
+numpy
+Pillow
+opencv-python
+requests
+gradio # Only if we need to reuse parts of its data processing, otherwise not for the node itself
+# accelerate # Often used with diffusers
+
+# Face Alignment and Audio
+# dlib # Often a dependency for face_alignment, but can be tricky to install. Check if necessary.
+# face_alignment # If the AlignImage class needs it beyond simple detection. Original seems to use a .pt file.
+
+# From HunyuanVideo-Avatar requirements.txt (selectively)
+scipy
+tensorboard # Usually for training, maybe not needed for inference node
+ninja # For flash-attention compilation
+fvcore # From original requirements
+av # For video processing
+decord # For video processing
+imageio
+imageio-ffmpeg
+pyyaml
+easydict
+tqdm
+matplotlib
+pytorch_msssim
+yapf
+# torchvision_extension_ops # This seems custom, might need to be vendored or adapted
+
+# Note: Some dependencies like 'bitsandbytes' for 8-bit optimization might be added later if needed.
+# Note on flash-attention: The original paper/repo uses flash-attention v2.6.3.
+# The command Collecting git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
+  Cloning https://github.com/Dao-AILab/flash-attention.git (to revision v2.6.3) to /tmp/pip-req-build-w37jxtll
+  Resolved https://github.com/Dao-AILab/flash-attention.git to commit 418d677192b483dfc1decfdf9aadca40b402485d
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error' was used.
+# For ComfyUI, it's often better to let users install this manually due to build complexities.
+# We will note this in the documentation.
